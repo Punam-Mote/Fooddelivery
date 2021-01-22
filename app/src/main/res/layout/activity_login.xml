@@ -97,7 +97,9 @@
             android:fontFamily="serif"
             android:gravity="center"
             android:text="Already have an account ?"/>
+
         <TextView
+            android:id="@+id/tvSignup"
         android:layout_width="192dp"
         android:layout_height="37dp"
         android:layout_weight="1"
