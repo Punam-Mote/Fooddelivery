@@ -108,5 +108,12 @@
         android:backgroundTint="#126115" />
 
     </LinearLayout>
+    <TextView
+        android:layout_width="192dp"
+        android:layout_height="37dp"
+        android:layout_weight="1"
+        android:fontFamily="serif"
+        android:text="SignUp ?"
+        android:backgroundTint="#126115" />
 
 </LinearLayout>
