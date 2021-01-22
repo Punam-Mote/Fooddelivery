@@ -84,6 +84,13 @@
         android:text="Sign up with google"
         android:layout_gravity="center"
         app:backgroundTint="#DAA8190E" />
+        <Button
+            android:id="@+id/btnGoogle"
+            android:layout_width="263dp"
+            android:layout_height="56dp"
+            android:text="Sign up with google"
+            android:layout_gravity="center"
+            app:backgroundTint="#DAA8190E" />
 
     </LinearLayout>
     <LinearLayout
