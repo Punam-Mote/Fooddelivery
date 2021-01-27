@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         tvSignup=findViewById(R.id.tvSignup)
 
         btnLogin.setOnClickListener {
-
+            login()
         }
         tvSignup.setOnClickListener {
             startActivity(Intent(this@LoginActivity, SignupUserActivity::class.java))
