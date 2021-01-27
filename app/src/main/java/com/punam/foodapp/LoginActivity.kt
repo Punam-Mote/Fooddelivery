@@ -21,12 +21,10 @@ class LoginActivity : AppCompatActivity() {
         tvSignup=findViewById(R.id.tvSignup)
 
         btnLogin.setOnClickListener {
-            val intent= Intent(this,DashboardActivity::class.java)
-            startActivity(intent)
+
         }
         tvSignup.setOnClickListener {
-            val intent=Intent(this,SignupUserActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@LoginActivity, SignupUserActivity::class.java))
         }
     }
 }
