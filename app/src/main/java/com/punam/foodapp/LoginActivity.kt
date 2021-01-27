@@ -49,6 +49,10 @@ class LoginActivity : AppCompatActivity() {
                             .show()
                 }
             }
+            else {
+                startActivity(Intent(this@LoginActivity,
+                        DashboardActivity::class.java))
+            }
         }
 
     }
