@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                     .checkUser(email, password)
             if (user == null) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@LoginActivity, "Invalid Username or Password", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@LoginActivity, "Invalid Email or Password", Toast.LENGTH_SHORT)
                             .show()
                 }
             }
