@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             login()
+            saveSharedPref()
         }
         tvSignup.setOnClickListener {
             startActivity(Intent(this@LoginActivity, SignupUserActivity::class.java))
@@ -56,4 +57,19 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+    private fun saveSharedPref() {
+        val username = etEmail.text.toString()
+        val password = etPassword.text.toString()
+        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("username", username)
+        editor.putString("password", password)
+        editor.apply()
+        Toast.makeText(
+                this@LoginActivity,
+                "Username and password saved",
+                Toast.LENGTH_SHORT
+        ).show()
+    }
+
 }
