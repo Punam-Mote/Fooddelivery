@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp">
         <activity android:name=".RunTimePermission"></activity>
-        <activity android:name=".SharedPreferencesActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

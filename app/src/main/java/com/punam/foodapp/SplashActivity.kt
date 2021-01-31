@@ -14,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+
         //IO and Main
         CoroutineScope(Dispatchers.IO).launch {
             delay(1000)
@@ -24,14 +25,15 @@ class SplashActivity : AppCompatActivity() {
             )
             )
             finish()
-            getSharedPref()
+//            getSharedPref()
+
         }
     }
-    private fun getSharedPref() {
-        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
-        val email = sharedPref.getString("email", "")
-        val password = sharedPref.getString("password", "")
-        Toast.makeText(this, "Username : $email and password : $password", Toast.LENGTH_SHORT)
-                .show()
-    }
+//    private fun getSharedPref() {
+//        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
+//        val email = sharedPref.getString("email", "")
+//        val password = sharedPref.getString("password", "")
+//        Toast.makeText(this, "Email : $email and password : $password", Toast.LENGTH_SHORT)
+//                .show()
+//    }
 }

@@ -35,6 +35,22 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, SignupUserActivity::class.java))
         }
     }
+
+    private fun saveSharedPref() {
+        val email = etEmail.text.toString()
+        val password = etPassword.text.toString()
+        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("email", email)
+        editor.putString("password", password)
+        editor.apply()
+        Toast.makeText(
+                this@LoginActivity,
+                "email and password saved",
+                Toast.LENGTH_SHORT
+        ).show()
+    }
+
     private fun login() {
         val email = etEmail.text.toString()
         val password = etPassword.text.toString()
@@ -57,19 +73,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-    private fun saveSharedPref() {
-        val username = etEmail.text.toString()
-        val password = etPassword.text.toString()
-        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putString("username", username)
-        editor.putString("password", password)
-        editor.apply()
-        Toast.makeText(
-                this@LoginActivity,
-                "Username and password saved",
-                Toast.LENGTH_SHORT
-        ).show()
-    }
+
 
 }
