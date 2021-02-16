@@ -1,13 +1,14 @@
 package com.punam.foodapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.punam.foodapp.R
 import com.punam.foodapp.db.UserDB
 import com.punam.foodapp.entity.User
+import com.punam.foodapp.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SignupUserActivity : AppCompatActivity() {
+
     private lateinit var etUsername: EditText
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
@@ -42,15 +44,27 @@ class SignupUserActivity : AppCompatActivity() {
                 etPassword.requestFocus()
                 return@setOnClickListener
             } else {
-                val user = User(username, email, password, contact)
+                val user =
+                    User(username = username, email = email, password = password, contact=contact)
                 CoroutineScope(Dispatchers.IO).launch {
-                    UserDB
-                        .getInstance(this@SignupUserActivity)
-                        .getUserDAO()
-                        .registerUser(user)
-                    // Switch to Main thread
-                    withContext(Main){
-                        Toast.makeText(this@SignupUserActivity, "user registered", Toast.LENGTH_SHORT).show()
+                    try {
+                        val userRepository = UserRepository()
+                        val response = userRepository.registerUser(user)
+                        if(response.success == true){
+                            withContext(Main) {
+                                Toast.makeText(
+                                    this@SignupUserActivity,
+                                    "Register bhayo", Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    } catch (ex: Exception) {
+                        withContext(Main) {
+                            Toast.makeText(
+                                this@SignupUserActivity,
+                                "Username cannot be duplicate", Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
