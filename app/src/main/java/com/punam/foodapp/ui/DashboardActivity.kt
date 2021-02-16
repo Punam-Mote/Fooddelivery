@@ -1,9 +1,10 @@
-package com.punam.foodapp
+package com.punam.foodapp.ui
 
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
+import com.punam.foodapp.R
 
 class DashboardActivity : AppCompatActivity() {
     private val permissions = arrayOf(

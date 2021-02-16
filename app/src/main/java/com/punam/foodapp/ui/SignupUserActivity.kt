@@ -1,11 +1,11 @@
-package com.punam.foodapp
+package com.punam.foodapp.ui
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.punam.foodapp.R
 import com.punam.foodapp.db.UserDB
 import com.punam.foodapp.entity.User
 import kotlinx.coroutines.CoroutineScope
