@@ -17,7 +17,8 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FoodApp">
+        android:theme="@style/Theme.FoodApp"
+        android:usesCleartextTraffic="true">
         <activity android:name=".ui.SignupSupplierActivity"></activity>
         <activity android:name=".ui.SplashActivity">
             <intent-filter>

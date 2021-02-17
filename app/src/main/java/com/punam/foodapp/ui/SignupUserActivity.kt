@@ -6,7 +6,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.punam.foodapp.R
-import com.punam.foodapp.db.UserDB
 import com.punam.foodapp.entity.User
 import com.punam.foodapp.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
@@ -50,11 +49,11 @@ class SignupUserActivity : AppCompatActivity() {
                     try {
                         val userRepository = UserRepository()
                         val response = userRepository.registerUser(user)
-                        if(response.success == true){
+                        if(response.message == "Login Sucessfull"){
                             withContext(Main) {
                                 Toast.makeText(
                                     this@SignupUserActivity,
-                                    "Register bhayo", Toast.LENGTH_SHORT
+                                    "User Registered", Toast.LENGTH_SHORT
                                 ).show()
                             }
                         }

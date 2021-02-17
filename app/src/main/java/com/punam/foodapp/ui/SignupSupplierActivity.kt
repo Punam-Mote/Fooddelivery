@@ -4,14 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import com.punam.foodapp.R
-import com.punam.foodapp.db.UserDB
 import com.punam.foodapp.entity.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SignupSupplierActivity : AppCompatActivity() {
     var usertype = arrayOf("Restaurant", "Vendor")

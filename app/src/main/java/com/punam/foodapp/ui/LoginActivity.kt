@@ -10,8 +10,6 @@ import androidx.core.app.ActivityCompat
 import com.google.android.material.snackbar.Snackbar
 import com.punam.foodapp.R
 import com.punam.foodapp.api.ServiceBuilder
-import com.punam.foodapp.db.UserDB
-import com.punam.foodapp.entity.User
 import com.punam.foodapp.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -83,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
                 val repository = UserRepository()
                 val response = repository.loginUser(email, password)
 
-                if (response.success == true) {
+                if (response.message == "Login Sucessfull") {
                     ServiceBuilder.token = "Bearer ${response.token}"
                     loginSharedPref()
                     startActivity(
