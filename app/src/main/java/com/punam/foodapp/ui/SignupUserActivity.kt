@@ -49,7 +49,7 @@ class SignupUserActivity : AppCompatActivity() {
                     try {
                         val userRepository = UserRepository()
                         val response = userRepository.registerUser(user)
-                        if(response.message == "Login Sucessfull"){
+                        if(response.message == "User Registered."){
                             withContext(Main) {
                                 Toast.makeText(
                                     this@SignupUserActivity,

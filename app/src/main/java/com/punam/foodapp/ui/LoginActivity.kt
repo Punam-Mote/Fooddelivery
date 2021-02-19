@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import com.google.android.material.snackbar.Snackbar
 import com.punam.foodapp.R
 import com.punam.foodapp.api.ServiceBuilder
+import com.punam.foodapp.repository.SupplierRepository
 import com.punam.foodapp.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,10 +44,11 @@ class LoginActivity : AppCompatActivity() {
         checkRunTimePermission()
 
         btnLogin.setOnClickListener {
-            login()
+            Userlogin()
+            SupplierLogin()
         }
         tvSignup.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, SignupUserActivity::class.java))
+            startActivity(Intent(this@LoginActivity, SignupSupplierActivity::class.java))
         }
     }
     private fun checkRunTimePermission() {
@@ -73,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this@LoginActivity, permissions, 1)
     }
 
-    private fun login() {
+    private fun Userlogin() {
         val email = etEmail.text.toString()
         val password = etPassword.text.toString()
         CoroutineScope(Dispatchers.IO).launch {
@@ -81,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
                 val repository = UserRepository()
                 val response = repository.loginUser(email, password)
 
-                if (response.message == "Login Sucessfull") {
+                if (response.success == true) {
                     ServiceBuilder.token = "Bearer ${response.token}"
                     loginSharedPref()
                     startActivity(
@@ -111,6 +113,51 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(
                         this@LoginActivity,
                         "Login error", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+    }
+
+    private fun SupplierLogin() {
+        val email = etEmail.text.toString()
+        val password = etPassword.text.toString()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val repository = SupplierRepository()
+                val response = repository.loginSupplier(email, password)
+
+                if (response.success == true) {
+                    ServiceBuilder.token = "Bearer ${response.token}"
+                    loginSharedPref()
+                    startActivity(
+                            Intent(
+                                    this@LoginActivity,
+                                    DashboardActivity::class.java
+                            )
+                    )
+                    finish()
+                } else {
+                    withContext(Dispatchers.Main) {
+                        val snack =
+                                Snackbar.make(
+                                        linearLayout,
+                                        "Invalid credentials",
+                                        Snackbar.LENGTH_LONG
+                                )
+                        snack.setAction("OK", View.OnClickListener {
+                            snack.dismiss()
+                        })
+                        snack.show()
+                    }
+                }
+
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                            this@LoginActivity,
+                            "Login error", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
