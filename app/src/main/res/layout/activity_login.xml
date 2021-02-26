@@ -74,14 +74,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <Button
+        <Button
         android:id="@+id/btnLogin"
         android:layout_width="262dp"
         android:layout_height="54dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:text="Login"
         android:layout_gravity="center"
         app:backgroundTint="#F046A34A" />
+        <Button
+            android:id="@+id/btnUser"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:text="Sign up as User"
+            android:layout_gravity="center"
+            app:backgroundTint="#fa8231" />
+        <Button
+            android:id="@+id/btnSupplier"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:text="Sign up as Restaurant"
+            android:layout_gravity="center"
+            app:backgroundTint="#0abde3" />
     <Button
         android:id="@+id/btnFacebook"
         android:layout_width="260dp"

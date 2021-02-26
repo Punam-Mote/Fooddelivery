@@ -31,6 +31,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var tvSignup:TextView
     private lateinit var linearLayout: LinearLayout
     private lateinit var chkRememberMe: CheckBox
+    private lateinit var btnUser:Button
+    private lateinit var btnSupplier:Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -40,6 +43,8 @@ class LoginActivity : AppCompatActivity() {
         tvSignup=findViewById(R.id.tvSignup)
         linearLayout = findViewById(R.id.linearLayout)
         chkRememberMe = findViewById(R.id.chkRememberMe)
+        btnUser=findViewById(R.id.btnUser)
+        btnSupplier=findViewById(R.id.btnSupplier)
 
         checkRunTimePermission()
 
@@ -48,8 +53,15 @@ class LoginActivity : AppCompatActivity() {
             SupplierLogin()
         }
         tvSignup.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, SignupUserActivity::class.java))
+        }
+        btnUser.setOnClickListener {
+            startActivity(Intent(this@LoginActivity,SignupUserActivity::class.java))
+        }
+        btnSupplier.setOnClickListener {
             startActivity(Intent(this@LoginActivity, SignupSupplierActivity::class.java))
         }
+
     }
     private fun checkRunTimePermission() {
         if (!hasPermission()) {
@@ -157,7 +169,7 @@ class LoginActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
                             this@LoginActivity,
-                            "Login error", Toast.LENGTH_SHORT
+                            "Login Successful", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
