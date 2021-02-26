@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.AddRestaurantActivity">
+    tools:context=".ui.UpdateRestaurantActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -121,14 +121,14 @@
                 android:hint="Delivery Hours" />
         </com.google.android.material.textfield.TextInputLayout>
         <Button
-            android:id="@+id/btnSave"
+            android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:background="#B4161B"
-            android:text="Add Restaurant"
+            android:text="Update Restaurant"
             android:textAllCaps="false"
             android:textColor="#FFFFFF" />
     </LinearLayout>
