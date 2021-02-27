@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(
                         Intent(
                             this@LoginActivity,
-                            AddRestaurantActivity::class.java
+                            DashboardActivity::class.java
                         )
                     )
                     finish()
@@ -146,7 +146,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(
                             Intent(
                                     this@LoginActivity,
-                                    DashboardActivity::class.java
+                                    AddRestaurantActivity::class.java
                             )
                     )
                     finish()

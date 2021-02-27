@@ -15,15 +15,16 @@ import com.punam.foodapp.R
 import com.punam.foodapp.api.ServiceBuilder
 import com.punam.foodapp.entity.Restaurant
 import com.punam.foodapp.repository.RestaurantRepository
+import com.punam.foodapp.ui.DashboardActivity
 import com.punam.foodapp.ui.UpdateRestaurantActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RestaurantAdapter (
-        val listRestaurants : MutableList<Restaurant>,
-        val context: Context
+class RestaurantAdapter(
+        val context: Context,
+        val listRestaurants: List<Restaurant>
         ): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>(){
     class RestaurantViewHolder(view: View): RecyclerView.ViewHolder(view){
         val tvname : TextView
@@ -51,13 +52,13 @@ class RestaurantAdapter (
     override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-    ): RestaurantAdapter.RestaurantViewHolder {
+    ): RestaurantViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.display_layout, parent, false)
         return RestaurantViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RestaurantAdapter.RestaurantViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val rstlst = listRestaurants[position]
         holder.tvname.text = rstlst.restaurantName
         holder.tvmenu.text = rstlst.rMenu.toString()
@@ -81,7 +82,7 @@ class RestaurantAdapter (
 //        }
         holder.update.setOnClickListener {
             val intent = Intent(context, UpdateRestaurantActivity::class.java)
-            intent.putExtra("student",rstlst)
+            intent.putExtra("restaurant",rstlst)
             context.startActivity(intent)
         }
         holder.delete.setOnClickListener {
@@ -103,7 +104,7 @@ class RestaurantAdapter (
                                 ).show()
                             }
                             withContext(Dispatchers.Main) {
-                                listRestaurants.remove(rstlst)
+                             //   listRestaurants.remove(rstlst)
                                 notifyDataSetChanged()
                             }
                         }

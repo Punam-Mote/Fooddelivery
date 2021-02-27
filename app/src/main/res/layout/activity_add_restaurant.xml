@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Student Details"
+            android:text="Restaurant Details"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -129,6 +129,17 @@
             android:layout_marginRight="20dp"
             android:background="#B4161B"
             android:text="Add Restaurant"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#B4161B"
+            android:text="View Restaurant"
             android:textAllCaps="false"
             android:textColor="#FFFFFF" />
     </LinearLayout>

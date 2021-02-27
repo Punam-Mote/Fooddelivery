@@ -15,6 +15,10 @@ interface RestaurantAPI {
         @Body restaurant : Restaurant
     ): Response<AddRestaurantResponse>
 
+//    @GET("Restaurant/all/")
+//    suspend fun getAllRestaurants(
+//           @Body restaurant: Restaurant
+//    ):Response<GetAllRestaurantResponse>
 
     @DELETE("/deleteRestaurant/{id}")
     suspend fun deleteRestaurant(
@@ -30,7 +34,7 @@ interface RestaurantAPI {
     ):Response<UpdateRestaurantResponse>
 
     @Multipart
-    @PUT("addRestaurant/{id}/")
+    @PUT("restaurant/upload-image/{id}")
     suspend fun uploadImage(
             @Header("Authorization") token: String,
             @Path("id") id: String,

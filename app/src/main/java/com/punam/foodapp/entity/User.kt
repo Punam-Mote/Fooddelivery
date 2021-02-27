@@ -11,3 +11,7 @@ data class User(
     val password : String? = null,
     val contact : String? = null,
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    var userId: Int = 0
+}

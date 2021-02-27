@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.punam.foodapp.R
+import com.punam.foodapp.db.RestaurantDB
 import com.punam.foodapp.entity.Restaurant
 import com.punam.foodapp.repository.RestaurantRepository
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +38,7 @@ class AddRestaurantActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var etDelivery: TextInputEditText
 
     private lateinit var btnSave: Button
+    private lateinit var btnView: Button
 
     private lateinit var ImageView: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +52,19 @@ class AddRestaurantActivity : AppCompatActivity(), View.OnClickListener {
         etCategory = findViewById(R.id.etCategory)
         etDelivery = findViewById(R.id.etDelivery)
         btnSave = findViewById(R.id.btnSave)
+        btnView= findViewById(R.id.btnView)
         ImageView = findViewById(R.id.ImageView)
 
         btnSave.setOnClickListener(this)
+
+        btnView.setOnClickListener {
+            startActivity(
+                    Intent(
+                            this@AddRestaurantActivity,
+                            DashboardActivity::class.java
+                    )
+            )
+        }
 
         ImageView.setOnClickListener {
             loadPopUpMenu()
@@ -163,6 +175,8 @@ class AddRestaurantActivity : AppCompatActivity(), View.OnClickListener {
                 val restaurantRepository = RestaurantRepository()
                 val response = restaurantRepository.addRestaurant(restaurant)
                 if(response.success == true){
+                    RestaurantDB.getInstance(this@AddRestaurantActivity).getRestaurantDAO().insertRestaurant(restaurant)
+                  //  Log.i("res",response.restaurant!!._id.toString())
                     if (imageUrl!=null){
                         uploadImage(response.restaurant!!._id!!)
                     }
@@ -184,7 +198,7 @@ class AddRestaurantActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     }
-    private fun uploadImage(studentId: String) {
+    private fun uploadImage(restaurantId: String) {
         if (imageUrl != null) {
             val file = File(imageUrl!!)
             val reqFile =
@@ -194,7 +208,7 @@ class AddRestaurantActivity : AppCompatActivity(), View.OnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val restaurantRepository = RestaurantRepository()
-                    val response = restaurantRepository.uploadImage(studentId, body)
+                    val response = restaurantRepository.uploadImage(restaurantId, body)
                     if (response.success == true) {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(this@AddRestaurantActivity, "Uploaded", Toast.LENGTH_SHORT)

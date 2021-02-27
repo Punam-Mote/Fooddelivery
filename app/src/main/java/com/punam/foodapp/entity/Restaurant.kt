@@ -2,7 +2,10 @@ package com.punam.foodapp.entity
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class Restaurant (
     val _id : String? = null,
     val restaurantName : String? = null,
@@ -13,6 +16,9 @@ data class Restaurant (
     val rDeliveryHour : String? = null,
     val rImage: String? = null
         ):Parcelable{
+    @PrimaryKey(autoGenerate = true)
+    var restaurantId: Int = 0
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -23,6 +29,7 @@ data class Restaurant (
         parcel.readString(),
         parcel.readString()
     ) {
+        restaurantId = parcel.readInt()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -34,6 +41,7 @@ data class Restaurant (
         parcel.writeString(rcategory)
         parcel.writeString(rDeliveryHour)
         parcel.writeString(rImage)
+        parcel.writeInt(restaurantId)
     }
 
     override fun describeContents(): Int {

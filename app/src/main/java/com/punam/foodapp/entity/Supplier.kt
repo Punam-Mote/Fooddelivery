@@ -1,6 +1,7 @@
 package com.punam.foodapp.entity
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 data class Supplier(
@@ -10,4 +11,7 @@ data class Supplier(
     val password : String? = null,
     val contact : String? = null,
     val userType: String?=null,
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var supplierId: Int = 0
+}
