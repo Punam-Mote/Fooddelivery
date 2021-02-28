@@ -23,6 +23,9 @@ import kotlinx.coroutines.withContext
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -198,7 +201,41 @@ class AddRestaurantActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     }
-    private fun uploadImage(restaurantId: String) {
+//    private fun uploadImage(bitmap: Bitmap){
+//        val stream = ByteArrayOutputStream()
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+//        val bytes: ByteArray = stream.toByteArray()
+//
+//        val file = File(this.cacheDir, "user-image.jpeg")
+//        file.createNewFile()
+//        val fileOutputStream = FileOutputStream(file)
+//        fileOutputStream.write(bytes)
+//        fileOutputStream.flush()
+//        fileOutputStream.close()
+//
+//        val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file)
+//        val body = MultipartBody.Part.createFormData("picture",file.name,requestBody)
+//        val api = Api.getClient();
+//        val service = api.create(uploadInter::class.java);
+//        val callApi = service.uploadFile(body);
+//        callApi.enqueue(object : Callback<ServerResponse> {
+//            override fun onResponse(
+//                    call: Call<ServerResponse>,
+//                    response: Response<ServerResponse>
+//            ) {
+//                if(response.code()==200){
+//                    val response = response.body()!!
+//                    findViewById<TextView>(R.id.responseText).text =
+//                            response.getMessage().toString()
+//                }
+//            }
+//            override fun onFailure(call: Call<ServerResponse>, t: Throwable) {
+//                findViewById<TextView>(R.id.responseText).text =
+//                        t.localizedMessage
+//            }
+//        })
+//    }
+    private fun uploadImage(restaurantId:String) {
         if (imageUrl != null) {
             val file = File(imageUrl!!)
             val reqFile =
